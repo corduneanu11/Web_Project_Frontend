@@ -1,0 +1,94 @@
+/* src/components/Navbar/Navbar.css */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 3rem;
+  
+  /* Fundal semi-transparent */
+  background: rgba(11, 5, 16, 0.3);
+  
+  /* Efectul de blur pe fundal (Glassmorphism) */
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px); /* Pentru compatibilitate cu Safari */
+  
+  border-bottom: 1px solid rgba(106, 27, 154, 0.5);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  position: sticky; /* Face navbar-ul sa ramana sus cand dai scroll */
+  top: 0;
+  z-index: 100;
+}
+
+.slogan {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #fff;
+  text-shadow: 0 0 10px #b366ff;
+  letter-spacing: 2px;
+}
+
+.nav-center {
+  display: flex;
+  gap: 2rem;
+}
+
+.nav-link {
+  background: none;
+  border: none;
+  color: #ccc;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+  color: #d494ff;
+  text-shadow: 0 0 8px #d494ff;
+}
+
+.user-greeting {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.highlight {
+  color: #d494ff;
+  text-shadow: 0 0 8px #d494ff;
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.cart-container {
+  position: relative;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.cart-icon {
+  font-size: 1.8rem;
+  transition: transform 0.3s ease;
+}
+
+.cart-container:hover .cart-icon {
+  transform: scale(1.1);
+}
+
+.cart-badge {
+  position: absolute;
+  top: -8px;
+  right: -10px;
+  background: #ff4d4d;
+  color: white;
+  border-radius: 50%;
+  padding: 2px 6px;
+  font-size: 0.8rem;
+  font-weight: bold;
+  box-shadow: 0 0 10px #ff4d4d;
+}

@@ -1,0 +1,482 @@
+/* JOC PAGE - MODERN LAYOUT */
+.joc-page-modern {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding-top: 80px; /* offset pentru navbar */
+}
+
+/* --- SCENARIUL 1: SELECTION MENU (SPLIT SCREEN) --- */
+.game-selection-menu {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  width: 100%;
+}
+
+.game-title {
+  font-size: 3.5rem;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  text-shadow: 0 0 20px #d494ff;
+  margin-top: 20px;
+  margin-bottom: 5px;
+  z-index: 10;
+}
+
+.game-subtitle {
+  color: #a890c0;
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+  z-index: 10;
+}
+
+.split-screen-container {
+  display: flex;
+  width: 100%;
+  flex: 1;
+  min-height: 60vh;
+  box-shadow: 0 0 50px rgba(0, 0, 0, 0.8) inset;
+}
+
+.split-panel {
+  flex: 1;
+  position: relative;
+  cursor: pointer;
+  transition: flex 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  border: 2px solid transparent;
+}
+
+.panel-left {
+  background: url('https://images.unsplash.com/photo-1599058917200-a80d52b90ce8?q=80&w=1200&auto=format&fit=crop') center/cover no-repeat;
+  border-right: 2px solid #6a1b9a;
+}
+
+.panel-right {
+  background: url('https://images.stockcake.com/public/4/b/5/4b5f8de5-021c-40ad-be1b-dc4d485ac6bf_large/muscular-man-posing-stockcake.jpg') center/cover no-repeat;
+}
+
+.panel-overlay {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(11, 5, 16, 0.7);
+  transition: background 0.4s ease;
+}
+
+.panel-left .panel-overlay {
+  background: linear-gradient(135deg, rgba(80, 20, 130, 0.6) 0%, rgba(11, 5, 16, 0.9) 100%);
+}
+
+.panel-right .panel-overlay {
+  background: linear-gradient(135deg, rgba(160, 20, 50, 0.6) 0%, rgba(11, 5, 16, 0.9) 100%);
+}
+
+.split-panel:hover {
+  flex: 1.4;
+}
+
+.split-panel:hover .panel-overlay {
+  background: rgba(11, 5, 16, 0.4);
+}
+
+.panel-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 40px;
+  transform: scale(0.95);
+  transition: transform 0.4s ease;
+}
+
+.split-panel:hover .panel-content {
+  transform: scale(1.05);
+}
+
+.panel-content h2 {
+  font-size: 2.5rem;
+  color: #fff;
+  text-transform: uppercase;
+  margin-bottom: 15px;
+}
+
+.panel-left h2 {
+  text-shadow: 0 0 15px #d494ff;
+}
+
+.panel-right h2 {
+  text-shadow: 0 0 15px #ff4d4d;
+}
+
+.path-desc {
+  color: #e6e6fa;
+  font-size: 1.1rem;
+  margin-bottom: 25px;
+  max-width: 300px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.enter-btn {
+  display: inline-block;
+  padding: 12px 30px;
+  border: 2px solid #d494ff;
+  color: #d494ff;
+  font-weight: bold;
+  letter-spacing: 2px;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+.panel-left:hover .enter-btn {
+  background: #d494ff;
+  color: #1a0b2e;
+  box-shadow: 0 0 20px #d494ff;
+}
+
+.enter-btn.red-btn {
+  border-color: #ff4d4d;
+  color: #ff4d4d;
+}
+
+.panel-right:hover .red-btn {
+  background: #ff4d4d;
+  color: #1a0b2e;
+  box-shadow: 0 0 20px #ff4d4d;
+}
+
+@media (max-width: 800px) {
+  .split-screen-container {
+    flex-direction: column;
+  }
+  .panel-left {
+    border-right: none;
+    border-bottom: 2px solid #6a1b9a;
+  }
+}
+
+/* --- SCENARIUL 2: MAP VIEW --- */
+.map-view {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  flex: 1;
+}
+
+.map-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgba(212, 148, 255, 0.2);
+}
+
+.map-header h2 {
+  color: #fff;
+  text-shadow: 0 0 10px #d494ff;
+  font-size: 2rem;
+  text-transform: uppercase;
+}
+
+.back-btn, .reset-btn {
+  font-size: 0.9rem;
+  padding: 8px 15px;
+}
+
+/* Stil Harta - O grila curbata/flex care simuleaza un traseu */
+.path-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  padding: 40px 0;
+  position: relative;
+}
+
+.map-node-wrapper {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.path-connector {
+  width: 40px;
+  height: 4px;
+  background: #2a1540;
+  margin: 0 10px;
+  border-radius: 2px;
+  transition: background 0.5s ease;
+}
+
+.map-node-wrapper.unlocked .path-connector {
+  background: #d494ff;
+  box-shadow: 0 0 8px #d494ff;
+}
+
+.map-node {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.map-node:hover {
+  transform: scale(1.1);
+}
+
+.node-circle {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+  background: #1a0b2e;
+  border: 3px solid #3c1e59;
+  color: #6a1b9a;
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 2;
+}
+
+.map-node-wrapper.unlocked .node-circle {
+  border-color: #d494ff;
+  color: #fff;
+  background: rgba(106, 27, 154, 0.6);
+  box-shadow: 0 0 15px rgba(212, 148, 255, 0.4);
+}
+
+.map-node-wrapper.current .node-circle {
+  background: #d494ff;
+  color: #1a0b2e;
+  box-shadow: 0 0 25px #d494ff;
+  animation: pulse-node 2s infinite;
+}
+
+@keyframes pulse-node {
+  0% { box-shadow: 0 0 0 0 rgba(212, 148, 255, 0.7); }
+  70% { box-shadow: 0 0 0 20px rgba(212, 148, 255, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(212, 148, 255, 0); }
+}
+
+.map-node-wrapper.locked .node-circle {
+  background: #0b0510;
+  border-color: #222;
+  color: #555;
+  cursor: not-allowed;
+}
+
+.node-label {
+  font-size: 0.85rem;
+  color: #a890c0;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.map-node-wrapper.current .node-label {
+  color: #d494ff;
+}
+
+/* --- SCENARIUL 3: MODAL EXERCITII --- */
+.level-modal-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(8px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.level-modal {
+  width: 90%;
+  max-width: 600px;
+  background: rgba(20, 10, 35, 0.95);
+  border: 1px solid #d494ff;
+  border-radius: 12px;
+  padding: 40px;
+  position: relative;
+  box-shadow: 0 0 50px rgba(106, 27, 154, 0.5);
+  animation: slide-up 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+@keyframes slide-up {
+  from { opacity: 0; transform: translateY(50px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.close-modal-btn {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  background: transparent;
+  border: none;
+  color: #a890c0;
+  font-size: 2rem;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.close-modal-btn:hover {
+  color: #ff4d4d;
+}
+
+.level-modal h2 {
+  font-size: 2rem;
+  color: #fff;
+  margin-bottom: 30px;
+  border-bottom: 1px solid rgba(212, 148, 255, 0.2);
+  padding-bottom: 15px;
+}
+
+.level-modal .highlight-title {
+  color: #d494ff;
+  text-shadow: 0 0 10px rgba(212, 148, 255, 0.4);
+}
+
+.level-modal .exercises-list {
+  background: rgba(0, 0, 0, 0.4);
+  padding: 20px;
+  border-radius: 8px;
+  border-left: 3px solid #d494ff;
+  margin-bottom: 30px;
+}
+
+.exercises-list p {
+  color: #e6e6fa;
+  font-size: 1.1rem;
+  margin-bottom: 15px;
+}
+
+.exercises-list p:last-child {
+  margin-bottom: 0;
+}
+
+/* Form Youtube */
+.proof-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  background: rgba(106, 27, 154, 0.1);
+  padding: 25px;
+  border-radius: 8px;
+  border: 1px solid rgba(212, 148, 255, 0.3);
+}
+
+.proof-instructions {
+  color: #a890c0;
+  font-size: 0.95rem;
+  font-style: italic;
+  margin-bottom: 10px;
+}
+
+.proof-form .cyber-input {
+  width: 100%;
+  border-color: #6a1b9a;
+}
+
+.proof-form .complete-btn {
+  align-self: center; /* centering nicely */
+  width: 100%;
+  font-size: 1.1rem;
+  margin-top: 10px;
+}
+
+/* Status Completat */
+.completed-status {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  padding: 20px;
+  background: rgba(46, 204, 113, 0.1);
+  border: 1px solid #2ecc71;
+  border-radius: 8px;
+}
+
+.check-ring {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: #2ecc71;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 0 20px rgba(46, 204, 113, 0.5);
+}
+
+.check-icon {
+  color: #1a0b2e;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.completed-status p {
+  color: #2ecc71;
+  font-size: 1.3rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+/* --- MASA MODE TINT --- */
+.masa-mode .map-header h2 {
+  text-shadow: 0 0 10px #ff4d4d;
+}
+.masa-mode .path-connector {
+  background: #401515;
+}
+.masa-mode .map-node-wrapper.unlocked .path-connector {
+  background: #ff4d4d;
+  box-shadow: 0 0 8px #ff4d4d;
+}
+.masa-mode .node-circle {
+  border-color: #591e1e;
+  color: #9a1b1b;
+}
+.masa-mode .map-node-wrapper.unlocked .node-circle {
+  border-color: #ff4d4d;
+  background: rgba(154, 27, 27, 0.6);
+  box-shadow: 0 0 15px rgba(255, 77, 77, 0.4);
+}
+.masa-mode .map-node-wrapper.current .node-circle {
+  background: #ff4d4d;
+  color: #1a0b0b;
+  box-shadow: 0 0 25px #ff4d4d;
+  animation: pulse-node-red 2s infinite;
+}
+.masa-mode .map-node-wrapper.current .node-label {
+  color: #ff4d4d;
+}
+.masa-mode .level-modal {
+  border-color: #ff4d4d;
+  box-shadow: 0 0 50px rgba(154, 27, 27, 0.5);
+}
+.masa-mode .level-modal .highlight-title {
+  color: #ff4d4d;
+  text-shadow: 0 0 10px rgba(255, 77, 77, 0.4);
+}
+.masa-mode .level-modal .exercises-list {
+  border-left-color: #ff4d4d;
+}
+
+@keyframes pulse-node-red {
+  0% { box-shadow: 0 0 0 0 rgba(255, 77, 77, 0.7); }
+  70% { box-shadow: 0 0 0 20px rgba(255, 77, 77, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(255, 77, 77, 0); }
+}

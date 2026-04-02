@@ -1,0 +1,26 @@
+/* src/components/Footer/Footer.css */
+.footer {
+  margin-top: auto;
+  padding: 2rem;
+  
+  /* Fundal semi-transparent */
+  background: rgba(5, 2, 10, 0.4);
+  
+  /* Efectul de blur pe fundal */
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  
+  border-top: 1px solid rgba(50, 11, 94, 0.5);
+  text-align: center;
+  font-size: 1.1rem;
+}
+
+.footer-content p {
+  color: #8b6baf;
+  margin: 0.5rem 0;
+}
+
+.copyright {
+  font-size: 0.9rem;
+  opacity: 0.6;
+}

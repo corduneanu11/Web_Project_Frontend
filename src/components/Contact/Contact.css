@@ -1,0 +1,132 @@
+/* src/components/Contact/Contact.css */
+.contact-page {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  padding: 4rem 2rem;
+  width: 100%;
+}
+
+.contact-container {
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.contact-header {
+  text-align: center;
+}
+
+.contact-header h1 {
+  font-size: 3rem;
+  color: #fff;
+  text-shadow: 0 0 15px #b366ff;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+
+.contact-header p {
+  font-size: 1.2rem;
+  color: #a890c0;
+}
+
+.contact-content {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.contact-info, .contact-map {
+  flex: 1;
+  min-width: 300px;
+}
+
+/* Stiluri specifice listei de informatii */
+.info-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.info-item {
+  display: flex;
+  flex-direction: column;
+  border-bottom: 1px solid rgba(106, 27, 154, 0.4);
+  padding-bottom: 1rem;
+}
+
+.info-item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.info-label {
+  color: #d494ff;
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 0.5rem;
+}
+
+.info-value {
+  color: #fff;
+  font-size: 1.25rem;
+  font-weight: 600;
+  text-shadow: 0 0 5px rgba(255, 255, 255, 0.2);
+}
+
+/* Stiluri Harta */
+.contact-map {
+  padding: 0; /* Scoatem padding-ul ca harta sa acopere tot panoul direct pe margini */
+  overflow: hidden;
+}
+
+.contact-map iframe {
+  display: block; /* Elimina spatiul alb de sub iframe */
+}
+
+/* Sectiune Butoane Sociale */
+.social-links-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  margin-top: 1rem;
+  width: 100%;
+}
+
+.social-btn {
+  text-decoration: none;
+  font-size: 1.2rem;
+  padding: 12px 35px;
+  letter-spacing: 2px;
+  text-align: center;
+}
+
+/* Stil specific Instagram */
+.ig-btn {
+  border-color: #f56040;
+  color: #f56040;
+  box-shadow: 0 0 5px rgba(245, 96, 64, 0.2);
+}
+
+.ig-btn:hover {
+  background: #f56040;
+  color: #fff;
+  box-shadow: 0 0 15px #f56040, 0 0 30px #f56040;
+}
+
+/* Stil specific Facebook */
+.fb-btn {
+  border-color: #1877f2;
+  color: #1877f2;
+  box-shadow: 0 0 5px rgba(24, 119, 242, 0.2);
+}
+
+.fb-btn:hover {
+  background: #1877f2;
+  color: #fff;
+  box-shadow: 0 0 15px #1877f2, 0 0 30px #1877f2;
+}

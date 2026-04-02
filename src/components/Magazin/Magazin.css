@@ -1,0 +1,127 @@
+.magazin-page {
+  padding: 100px 20px 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.magazin-header {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.magazin-header h1 {
+  font-size: 2.5rem;
+  color: #dfb3ff;
+  text-shadow: 0 0 10px rgba(212, 148, 255, 0.5);
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.magazin-header p {
+  color: #b0a8b9;
+  font-size: 1.2rem;
+}
+
+.shop-section {
+  margin-bottom: 60px;
+}
+
+.section-title {
+  color: #fff;
+  border-bottom: 2px solid #d494ff;
+  padding-bottom: 10px;
+  margin-bottom: 30px;
+  font-size: 1.8rem;
+  text-shadow: 0 0 5px rgba(212, 148, 255, 0.5);
+}
+
+.products-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 30px;
+}
+
+@media (min-width: 600px) {
+  .products-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 992px) {
+  .products-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.product-card {
+  background: rgba(18, 10, 26, 0.85);
+  border: 1px solid #3c1e59;
+  border-radius: 8px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+  border-color: #d494ff;
+  box-shadow: 0 0 15px rgba(212, 148, 255, 0.3);
+}
+
+.product-image-container {
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+  border-bottom: 1px solid #3c1e59;
+}
+
+.product-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.product-card:hover .product-image {
+  transform: scale(1.05);
+}
+
+.product-info {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.product-info h3 {
+  color: #fff;
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+
+.product-desc {
+  color: #b0a8b9;
+  font-size: 0.9rem;
+  margin-bottom: 20px;
+  flex-grow: 1;
+}
+
+.product-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto;
+}
+
+.product-price {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #d494ff;
+}
+
+.buy-btn {
+  font-size: 0.9rem;
+  padding: 6px 15px;
+}

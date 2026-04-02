@@ -1,0 +1,56 @@
+.restricted-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(11, 5, 16, 0.9);
+  backdrop-filter: blur(10px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1500;
+}
+
+.restricted-modal {
+  width: 90%;
+  max-width: 500px;
+  text-align: center;
+  padding: 40px;
+  background: rgba(30, 10, 20, 0.95);
+  border: 1px solid #ff4d4d;
+  box-shadow: 0 0 50px rgba(255, 77, 77, 0.4);
+  animation: pop-in 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes pop-in {
+  from { transform: scale(0.8); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.lock-icon.huge {
+  font-size: 5rem;
+  display: block;
+  margin-bottom: 20px;
+}
+
+.neon-text.red {
+  color: #ff4d4d;
+  text-shadow: 0 0 15px #ff4d4d;
+  margin-bottom: 20px;
+  font-size: 2.2rem;
+}
+
+.restricted-text {
+  color: #e6e6fa;
+  font-size: 1.1rem;
+  margin-bottom: 30px;
+  line-height: 1.5;
+}
+
+.restricted-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.restricted-actions .neon-btn {
+  width: 100%;
+}

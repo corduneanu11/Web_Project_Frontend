@@ -1,0 +1,42 @@
+/* src/index.css */
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&display=swap');
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Rajdhani', sans-serif;
+  color: #e6e6fa;
+  min-height: 100vh;
+  
+  /* Imaginea de fundal fixata cu un overlay intunecat peste ea */
+  background-image: 
+    linear-gradient(to bottom, rgba(24, 12, 34, 0.85), rgba(33, 18, 46, 0.95)),
+    url('https://images.stockcake.com/public/f/6/0/f60c9627-6b62-45f1-a0a4-b2c25d2d424e_large/gothic-fitness-cathedral-stockcake.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed; /* Asta face ca imaginea sa stea pe loc la scroll */
+}
+
+.neon-btn {
+  background: transparent;
+  color: #d494ff;
+  border: 1px solid #d494ff;
+  padding: 8px 16px;
+  font-family: 'Rajdhani', sans-serif;
+  font-weight: 700;
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 5px rgba(212, 148, 255, 0.2);
+}
+
+.neon-btn:hover {
+  background: #d494ff;
+  color: #0b0510;
+  box-shadow: 0 0 15px #d494ff, 0 0 30px #d494ff;
+}
