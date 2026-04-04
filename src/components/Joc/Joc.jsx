@@ -71,13 +71,20 @@ function Joc({ currentUser }) {
       return;
     }
     
-    // Simulate API approval call logic
-    alert('Dovada analizata automat prin AI Vision. Succes!');
+    const pendingProofs = JSON.parse(localStorage.getItem('pendingProofs') || '[]');
+    pendingProofs.push({
+      id: Date.now(),
+      username: currentUser,
+      category: activeCategory,
+      levelId: selectedLevel.id,
+      link: youtubeLink,
+      title: selectedLevel.title,
+      date: new Date().toLocaleDateString()
+    });
+    localStorage.setItem('pendingProofs', JSON.stringify(pendingProofs));
     
-    if (selectedLevel.id === unl && selectedLevel.id < dbLevels.length) {
-      setUnl(unl + 1);
-    }
-    
+    alert('Dovada a fost trimisă cu succes către baza de date! Așteaptă evaluarea din partea Autorității.');
+    setYoutubeLink('');
     setSelectedLevel(null);
   };
 
@@ -190,18 +197,34 @@ function Joc({ currentUser }) {
                 </div>
 
                 {selectedLevel.id === unl ? (
-                   <form onSubmit={handleSubmitProof} className="proof-form">
-                     <p className="proof-instructions">Filmeaza si incarca pe site dovada efectuarii primei miscari (De baza) pentru a promova la urmatorul nivel.</p>
-                     <input 
-                        type="url" 
-                        required 
-                        placeholder="Exemplu: https://youtube.com/watch?v=..." 
-                        value={youtubeLink}
-                        onChange={e => setYoutubeLink(e.target.value)}
-                        className="cyber-input"
-                     />
-                     <button type="submit" className="neon-btn complete-btn">Trimite Dovada & Aprobare</button>
-                   </form>
+                   (() => {
+                     const isPending = JSON.parse(localStorage.getItem('pendingProofs') || '[]').some(
+                       p => p.username === currentUser && p.category === activeCategory && p.levelId === selectedLevel.id
+                     );
+                     
+                     if (isPending) {
+                       return (
+                         <div className="proof-form pending-view">
+                           <p className="proof-instructions" style={{ color: '#ffcc00', textAlign: 'center', fontSize: '1.2rem' }}>🕒 Dovadă trimisă! În așteptarea evaluării...</p>
+                         </div>
+                       );
+                     }
+                     
+                     return (
+                       <form onSubmit={handleSubmitProof} className="proof-form">
+                         <p className="proof-instructions">Filmeaza si incarca pe site dovada efectuarii primei miscari (De baza) pentru a promova la urmatorul nivel.</p>
+                         <input 
+                            type="url" 
+                            required 
+                            placeholder="Exemplu: https://youtube.com/watch?v=..." 
+                            value={youtubeLink}
+                            onChange={e => setYoutubeLink(e.target.value)}
+                            className="cyber-input"
+                         />
+                         <button type="submit" className="neon-btn complete-btn">Trimite Dovada & Aprobare</button>
+                       </form>
+                     );
+                   })()
                 ) : (
                    <div className="completed-status">
                      <div className="check-ring">

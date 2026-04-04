@@ -1,0 +1,142 @@
+.admin-page {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  padding: 3rem 1rem;
+  width: 100%;
+}
+
+.admin-container {
+  width: 100%;
+  max-width: 900px;
+  background: rgba(30, 10, 20, 0.85); /* Tenta mai rosiatica pt admin/autoritate */
+  border: 1px solid #ff4d4d;
+}
+
+.red-title {
+  color: #ff4d4d;
+  text-shadow: 0 0 15px #ff4d4d;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.admin-desc {
+  text-align: center;
+  color: #e6e6fa;
+  margin-bottom: 30px;
+}
+
+.empty-proofs {
+  text-align: center;
+  padding: 50px;
+  background: rgba(0,0,0,0.4);
+  border-radius: 8px;
+  color: #a890c0;
+}
+
+.proofs-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.proof-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.6);
+  border-left: 4px solid #ffcc00;
+  padding: 20px;
+  border-radius: 6px;
+  transition: transform 0.3s ease;
+}
+
+.proof-card:hover {
+  transform: translateX(5px);
+  background: rgba(20, 5, 10, 0.8);
+}
+
+.proof-info {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  color: #fff;
+}
+
+.proof-user {
+  color: #d494ff;
+  font-size: 1.1rem;
+}
+
+.proof-cat {
+  color: #ff4d4d;
+  font-weight: bold;
+}
+
+.proof-level {
+  color: #a890c0;
+}
+
+.proof-date {
+  font-size: 0.8rem;
+  color: #888;
+}
+
+.proof-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.small-btn {
+  padding: 6px 12px;
+  font-size: 0.9rem;
+  text-transform: none;
+  background: transparent;
+  color: #fff;
+  border-color: #fff;
+  text-decoration: none;
+  display: inline-block;
+  text-align: center;
+}
+
+.approve-btn {
+  background: rgba(46, 204, 113, 0.2) !important;
+  border-color: #2ecc71 !important;
+  color: #2ecc71 !important;
+}
+
+.approve-btn:hover {
+  background: #2ecc71 !important;
+  color: #000 !important;
+  box-shadow: 0 0 15px #2ecc71;
+}
+
+.reject-btn {
+  background: rgba(255, 77, 77, 0.2) !important;
+  border-color: #ff4d4d !important;
+  color: #ff4d4d !important;
+}
+
+.reject-btn:hover {
+  background: #ff4d4d !important;
+  color: #000 !important;
+  box-shadow: 0 0 15px #ff4d4d;
+}
+
+@media (max-width: 700px) {
+  .proof-card {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+  
+  .proof-actions {
+    flex-direction: row;
+    width: 100%;
+  }
+  
+  .approve-btn, .reject-btn {
+    flex: 1;
+  }
+}

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar/Navbar';
 import MainContent from './components/MainContent/MainContent';
@@ -11,6 +11,9 @@ import CartModal from './components/CartModal/CartModal';
 import Checkout from './components/Checkout/Checkout';
 import AuthModal from './components/AuthModal/AuthModal';
 import RestrictedModal from './components/RestrictedModal/RestrictedModal';
+import Profil from './components/Profil/Profil';
+import AdminPanel from './components/AdminPanel/AdminPanel';
+import NotificationModal from './components/NotificationModal/NotificationModal';
 import './App.css';
 
 function App() {
@@ -18,6 +21,8 @@ function App() {
   const [isAuthOpen, setIsAuthOpen] = useState(false);
   const [cartItems, setCartItems] = useState([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const [isNotifOpen, setIsNotifOpen] = useState(false);
+  const [notifications, setNotifications] = useState([]);
 
   const handleAddToCart = (product, quantity = 1, options = {}) => {
     setCartItems((prev) => {
@@ -54,7 +59,7 @@ function App() {
 
   const clearCart = () => setCartItems([]);
 
-  const totalCartCount = cartItems.reduce((acc, item) => acc + item.quantity, 0);
+  const totalCartCount = (cartItems || []).reduce((acc, item) => acc + (item?.quantity || 0), 0);
 
   const handleLogin = (username) => {
     setCurrentUser(username);
@@ -64,8 +69,8 @@ function App() {
     setCurrentUser(null);
   };
 
-  // Wrapper simplificat pentru protejarea rutelor
-  const RequireAuth = ({ children }) => {
+  // Wrapper helper (element renderer) in loc de componenta inline pentru a preveni unmount-ul (state reset)
+  const renderAuth = (element) => {
     if (!currentUser) {
       return (
         <>
@@ -74,8 +79,64 @@ function App() {
         </>
       );
     }
-    return children;
+    return element;
   };
+
+  // Handle Notifications load
+  useEffect(() => {
+    if (currentUser) {
+      try {
+        const savedNotifs = JSON.parse(localStorage.getItem(`hybridNotifs_${currentUser}`) || '[]');
+        setNotifications(savedNotifs || []);
+      } catch (e) {
+        setNotifications([]);
+      }
+    } else {
+      setNotifications([]);
+    }
+  }, [currentUser]);
+
+  // Periodic check for notifications
+  useEffect(() => {
+    if (!currentUser) return;
+    const interval = setInterval(() => {
+      try {
+        const savedNotifs = JSON.parse(localStorage.getItem(`hybridNotifs_${currentUser}`) || '[]');
+        if (JSON.stringify(savedNotifs) !== JSON.stringify(notifications)) {
+          setNotifications(savedNotifs || []);
+        }
+      } catch (e) {}
+    }, 2000); 
+    return () => clearInterval(interval);
+  }, [currentUser, notifications]);
+
+  const markAllAsRead = () => {
+    if (!currentUser) return;
+    const updated = (notifications || []).map(n => n ? {...n, read: true} : n);
+    setNotifications(updated);
+    localStorage.setItem(`hybridNotifs_${currentUser}`, JSON.stringify(updated));
+  };
+
+  const markAsRead = (id) => {
+    if (!currentUser) return;
+    const updated = (notifications || []).map(n => (n && n.id === id) ? {...n, read: true} : n);
+    setNotifications(updated);
+    localStorage.setItem(`hybridNotifs_${currentUser}`, JSON.stringify(updated));
+  };
+  
+  // Resincronizare cos de cumparaturi care a fost stearsa accidental
+  useEffect(() => {
+    try {
+      const savedCart = localStorage.getItem('hybridCart');
+      if (savedCart) {
+        setCartItems(JSON.parse(savedCart) || []);
+      }
+    } catch (e) {}
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem('hybridCart', JSON.stringify(cartItems || []));
+  }, [cartItems]);
 
   return (
     // Router invaluie toata aplicatia pentru a permite navigatia
@@ -88,6 +149,8 @@ function App() {
           toggleCart={() => setIsCartOpen(!isCartOpen)} 
           onLoginClick={() => setIsAuthOpen(true)}
           onLogout={handleLogout}
+          notificationsCount={(notifications || []).filter(n => n && !n.read).length}
+          toggleNotifs={() => setIsNotifOpen(!isNotifOpen)}
         />
         
         <CartModal 
@@ -102,10 +165,12 @@ function App() {
         <Routes>
           <Route path="/" element={<MainContent />} />
           <Route path="/contact" element={<Contact />} />
-          <Route path="/joc" element={<RequireAuth><Joc currentUser={currentUser} /></RequireAuth>} />
-          <Route path="/magazin" element={<RequireAuth><Magazin onAddToCart={handleAddToCart} /></RequireAuth>} />
-          <Route path="/produs/:id" element={<RequireAuth><ProductDetails onAddToCart={handleAddToCart} /></RequireAuth>} />
-          <Route path="/checkout" element={<RequireAuth><Checkout cartItems={cartItems} clearCart={clearCart} /></RequireAuth>} />
+          <Route path="/joc" element={renderAuth(<Joc currentUser={currentUser} />)} />
+          <Route path="/magazin" element={renderAuth(<Magazin onAddToCart={handleAddToCart} />)} />
+          <Route path="/produs/:id" element={renderAuth(<ProductDetails onAddToCart={handleAddToCart} />)} />
+          <Route path="/checkout" element={renderAuth(<Checkout cartItems={cartItems} clearCart={clearCart} />)} />
+          <Route path="/profil" element={renderAuth(<Profil currentUser={currentUser}/>)} />
+          <Route path="/admin" element={currentUser === 'admin' ? <AdminPanel currentUser={currentUser}/> : renderAuth(<MainContent />)} />
         </Routes>
         
         <AuthModal 
@@ -114,6 +179,14 @@ function App() {
           onLogin={handleLogin} 
         />
         
+        <NotificationModal 
+          isOpen={isNotifOpen}
+          onClose={() => setIsNotifOpen(false)}
+          notifications={notifications}
+          markAllAsRead={markAllAsRead}
+          markAsRead={markAsRead}
+        />
+
         <Footer />
       </div>
     </Router>

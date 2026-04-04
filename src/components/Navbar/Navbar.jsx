@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom'; // Importam Link de la react-router
 import './Navbar.css';
 
-function Navbar({ isLoggedIn, username, cartCount, toggleCart, onLoginClick, onLogout }) {
+function Navbar({ isLoggedIn, username, cartCount, toggleCart, onLoginClick, onLogout, notificationsCount, toggleNotifs }) {
   return (
     <header className="navbar">
       <div className="nav-left">
@@ -13,10 +13,11 @@ function Navbar({ isLoggedIn, username, cartCount, toggleCart, onLoginClick, onL
       </div>
       
       <nav className="nav-center">
+        {isLoggedIn && <Link to="/profil" className="nav-link" style={{ textDecoration: 'none' }}>Profil</Link>}
         <Link to="/magazin" className="nav-link" style={{ textDecoration: 'none' }}>Magazin</Link>
         <Link to="/joc" className="nav-link" style={{ textDecoration: 'none' }}>Joc</Link>
-        {/* Transformam butonul de Contact in Link catre ruta /contact */}
         <Link to="/contact" className="nav-link" style={{ textDecoration: 'none' }}>Contact</Link>
+        {username === 'admin' && <Link to="/admin" className="nav-link admin-link" style={{ textDecoration: 'none', color: '#ff4d4d', fontWeight: 'bold', textShadow: '0 0 10px #ff4d4d' }}>Autoritate</Link>}
       </nav>
       
       <div className="nav-right">
@@ -29,10 +30,19 @@ function Navbar({ isLoggedIn, username, cartCount, toggleCart, onLoginClick, onL
           <button className="neon-btn" onClick={onLoginClick}>Loghează-te</button>
         )}
         
-        <div className="cart-container" id="cart-icon" onClick={toggleCart} style={{ cursor: 'pointer' }}>
-          <span className="cart-icon">🛒</span>
-          {cartCount > 0 && <span className="cart-badge">{cartCount}</span>}
-        </div>
+        {isLoggedIn && (
+          <>
+            <div className="cart-container" id="notif-icon" onClick={toggleNotifs} style={{ cursor: 'pointer', marginRight: '15px' }}>
+              <span style={{ fontSize: '1.4rem' }}>🔔</span>
+              {notificationsCount > 0 && <span className="cart-badge" style={{ right: '-5px', top: '-5px' }}>{notificationsCount}</span>}
+            </div>
+
+            <div className="cart-container" id="cart-icon" onClick={toggleCart} style={{ cursor: 'pointer' }}>
+              <span className="cart-icon">🛒</span>
+              {cartCount > 0 && <span className="cart-badge">{cartCount}</span>}
+            </div>
+          </>
+        )}
       </div>
     </header>
   );
