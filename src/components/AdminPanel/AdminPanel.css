@@ -26,6 +26,47 @@
   margin-bottom: 30px;
 }
 
+.admin-section {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin-top: 2rem;
+}
+
+.admin-section:first-of-type {
+  margin-top: 0;
+}
+
+.admin-section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid rgba(255, 77, 77, 0.2);
+}
+
+.admin-section-header h2 {
+  color: #fff;
+  font-size: 1.5rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.admin-badge {
+  min-width: 42px;
+  height: 42px;
+  padding: 0 12px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 77, 77, 0.12);
+  border: 1px solid rgba(255, 77, 77, 0.45);
+  color: #ff9d9d;
+  font-weight: 700;
+}
+
 .empty-proofs {
   text-align: center;
   padding: 50px;
@@ -61,6 +102,7 @@
   flex-direction: column;
   gap: 8px;
   color: #fff;
+  flex: 1;
 }
 
 .proof-user {
@@ -82,10 +124,42 @@
   color: #888;
 }
 
+.report-card {
+  border-left-color: #d494ff;
+}
+
+.report-info {
+  max-width: 100%;
+}
+
+.report-status {
+  width: fit-content;
+  padding: 0.3rem 0.7rem;
+  border-radius: 999px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.report-status.new {
+  color: #ffcc00;
+  background: rgba(255, 204, 0, 0.12);
+  border: 1px solid rgba(255, 204, 0, 0.35);
+}
+
+.report-status.resolved {
+  color: #7dffb3;
+  background: rgba(46, 204, 113, 0.12);
+  border: 1px solid rgba(46, 204, 113, 0.35);
+}
+
 .proof-actions {
   display: flex;
   flex-direction: column;
   gap: 10px;
+}
+
+.proof-video {
+  margin-right: 30px;
 }
 
 .small-btn {

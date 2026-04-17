@@ -110,7 +110,7 @@ function ProductDetails({ onAddToCart }) {
                 </div>
 
                 <div className="admin-info">
-                  <strong>ℹ️ Administrare:</strong> {productInfo.administration}
+                  <strong>Administrare:</strong> {productInfo.administration}
                 </div>
               </div>
             ) : (
@@ -145,3 +145,4 @@ function ProductDetails({ onAddToCart }) {
 }
 
 export default ProductDetails;
+

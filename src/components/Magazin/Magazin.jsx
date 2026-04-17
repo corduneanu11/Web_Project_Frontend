@@ -14,8 +14,10 @@ function Magazin({ onAddToCart }) {
     // Cautare imagine produs din acest card
     const card = btn.closest('.product-card');
     const img = card.querySelector('.product-image');
-    // Caseta cosului de cumparaturi din Navbar
-    const cartIcon = document.getElementById('cart-icon');
+    // Caseta cosului de cumparaturi din Navbar (cea vizibila)
+    const cartIcons = document.querySelectorAll('.cart-target-icon');
+    // Cautăm elementul cu display diferit de "none" luând în calcul și părinții lui (pe baza offsetWidth-ului în mediul randat)
+    const cartIcon = Array.from(cartIcons).find(el => el.getBoundingClientRect().width > 0) || cartIcons[0];
 
     if (img && cartIcon) {
       const imgRect = img.getBoundingClientRect();
@@ -23,10 +25,10 @@ function Magazin({ onAddToCart }) {
 
       // Clonam imaginea pentru a o anima
       const flyingImg = img.cloneNode();
-      flyingImg.style.position = 'fixed';
+      flyingImg.style.position = 'absolute';
       flyingImg.style.zIndex = '9999';
-      flyingImg.style.top = `${imgRect.top}px`;
-      flyingImg.style.left = `${imgRect.left}px`;
+      flyingImg.style.top = `${imgRect.top + window.scrollY}px`;
+      flyingImg.style.left = `${imgRect.left + window.scrollX}px`;
       flyingImg.style.width = `${imgRect.width}px`;
       flyingImg.style.height = `${imgRect.height}px`;
       flyingImg.style.transition = 'all 0.8s cubic-bezier(0.25, 0.8, 0.25, 1)';
@@ -38,8 +40,8 @@ function Magazin({ onAddToCart }) {
       void flyingImg.offsetWidth; 
 
       // Setam coordonatele destinatiei
-      flyingImg.style.top = `${cartRect.top}px`;
-      flyingImg.style.left = `${cartRect.left}px`;
+      flyingImg.style.top = `${cartRect.top + window.scrollY}px`;
+      flyingImg.style.left = `${cartRect.left + window.scrollX}px`;
       flyingImg.style.width = '20px';
       flyingImg.style.height = '20px';
       flyingImg.style.opacity = '0.2';

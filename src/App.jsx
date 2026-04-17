@@ -14,6 +14,7 @@ import RestrictedModal from './components/RestrictedModal/RestrictedModal';
 import Profil from './components/Profil/Profil';
 import AdminPanel from './components/AdminPanel/AdminPanel';
 import NotificationModal from './components/NotificationModal/NotificationModal';
+import WelcomeModal from './components/WelcomeModal/WelcomeModal';
 import './App.css';
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isNotifOpen, setIsNotifOpen] = useState(false);
   const [notifications, setNotifications] = useState([]);
+  const [showWelcome, setShowWelcome] = useState(false);
 
   const handleAddToCart = (product, quantity = 1, options = {}) => {
     setCartItems((prev) => {
@@ -63,6 +65,7 @@ function App() {
 
   const handleLogin = (username) => {
     setCurrentUser(username);
+    setShowWelcome(true);
   };
 
   const handleLogout = () => {
@@ -185,6 +188,12 @@ function App() {
           notifications={notifications}
           markAllAsRead={markAllAsRead}
           markAsRead={markAsRead}
+        />
+
+        <WelcomeModal
+          isOpen={showWelcome}
+          onClose={() => setShowWelcome(false)}
+          username={currentUser}
         />
 
         <Footer />

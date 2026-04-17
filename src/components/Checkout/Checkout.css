@@ -201,6 +201,20 @@
   }
 }
 
+@media (max-width: 600px) {
+  .checkout-container {
+    padding: 1.5rem;
+  }
+
+  .grid-2 {
+    grid-template-columns: 1fr;
+  }
+
+  .checkout-title {
+    font-size: 2rem;
+  }
+}
+
 /* --- Loading & Success Animations --- */
 
 .flex-center {

@@ -46,17 +46,52 @@
   gap: 10px;
 }
 
+.profil-title-picker {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  max-width: 320px;
+  padding: 0.9rem 1rem;
+  background: rgba(15, 5, 25, 0.85);
+  border: 1px solid #6a1b9a;
+  border-radius: 14px;
+  box-shadow: inset 0 0 20px rgba(106, 27, 154, 0.16), 0 0 18px rgba(0, 0, 0, 0.18);
+}
+
+.profil-title-label {
+  color: #d8b8ff;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.profil-title-select {
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(106, 27, 154, 0.5);
+  border-radius: 4px;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 12px 15px;
+  outline: none;
+  width: 100%;
+  box-shadow: none;
+}
+
+.profil-title-select:focus {
+  border-color: #d494ff;
+  box-shadow: 0 0 10px rgba(212, 148, 255, 0.2);
+}
+
+.profil-title-select option {
+  background: #190c28;
+  color: #f4ebff;
+}
+
 .profil-username {
   font-size: 3rem;
   text-transform: uppercase;
   margin: 0;
-}
-
-.profil-rank {
-  font-size: 1.5rem;
-  margin: 0;
-  text-transform: uppercase;
-  letter-spacing: 2px;
 }
 
 .stats-grid {
@@ -152,6 +187,10 @@
   .profil-header {
     flex-direction: column;
     text-align: center;
+  }
+  .profil-title-picker {
+    width: 100%;
+    max-width: 100%;
   }
   .stats-grid {
     grid-template-columns: 1fr;

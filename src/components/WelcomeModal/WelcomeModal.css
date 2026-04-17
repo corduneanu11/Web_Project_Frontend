@@ -1,0 +1,60 @@
+.welcome-modal {
+  max-width: 700px !important;
+  width: 90% !important;
+  max-height: 90vh;
+  overflow-y: auto;
+  text-align: center;
+}
+
+.welcome-title {
+  color: #fff;
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  text-shadow: 0 0 10px #d494ff;
+  border-bottom: 1px solid rgba(212, 148, 255, 0.3);
+  padding-bottom: 1rem;
+}
+
+.welcome-paragraph-container {
+  background: rgba(20, 10, 35, 0.6);
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.welcome-paragraph {
+  color: #e6e6fa;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.welcome-success-msg {
+  color: #d494ff;
+  font-size: 1.4rem;
+  margin-top: 1rem;
+  text-shadow: 0 0 5px #b366ff;
+}
+
+.welcome-ok-btn {
+  margin-top: 1rem;
+  font-size: 1.05rem;
+  font-family: inherit;
+  width: auto;
+  min-width: 220px;
+  padding: 0.95rem 2.4rem;
+  border-radius: 999px;
+  border: 1px solid #d494ff;
+  background: linear-gradient(135deg, rgba(212, 148, 255, 0.18), rgba(68, 24, 98, 0.9));
+  color: #f8f0ff;
+  box-shadow: 0 0 18px rgba(212, 148, 255, 0.22), inset 0 0 18px rgba(212, 148, 255, 0.08);
+  letter-spacing: 2px;
+}
+
+.welcome-ok-btn:hover {
+  transform: translateY(-2px);
+  background: linear-gradient(135deg, rgba(212, 148, 255, 0.92), rgba(157, 76, 214, 0.96));
+  color: #12071f;
+  box-shadow: 0 0 20px rgba(212, 148, 255, 0.55), 0 0 38px rgba(212, 148, 255, 0.28);
+}
