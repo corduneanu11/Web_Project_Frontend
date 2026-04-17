@@ -2,7 +2,31 @@
 
 Acest proiect este o platforma web interactiva dedicata antrenamentelor hibride (care imbina gimnastica de baza si hipertrofia cu greutati). Construit in React + Vite, aplicatia imbina comertul electronic (magazinul) cu o experienta de gamificare pentru atleti. 
 
-## 📌 Functionalitati Principale
+## Contributii Personale
+
+In cadrul acestui proiect, am contribuit activ la dezvoltarea si implementarea urmatoarelor sectiuni:
+- **Pagina Principala (`MainContent`):** Designul initial, continutul principal (sectiunea Hero slider) si organizarea responsiva.
+- **Sectiunea Contact (`Contact`):** Crearea paginii de formular prin care clientii / utilizatorii pot lua legatura si trimite mesaje.
+- **Magazinul Online (`Magazin`):** Arhitecturarea vizuala a produselor (suplimente, echipamente), paginarea si logica afisarii.
+
+## Arhitectura Proiectului
+
+Proiectul urmeaza o arhitectura modulara clasica pentru React, structura de foldere fiind gandita pe blocuri functionale de cod:
+
+- **`src/`** – Directorul sursa de baza:
+  - **`components/`** – Aici sunt stocate toate "piesele" vizuale, fiind impartite intr-o multime de sub-foldere, fiecare avand logica (`.jsx`) si stilul (`.css`) bine delimitate:
+    - `MainContent/` – Codul destinat redarii ecranului principal (Prezentarea generala de la deschiderea site-ului).
+    - `Contact/` – Secțiunea ce apartine paginii izolate de trimitere mesaje catre administrator.
+    - `Magazin/`, `CartModal/`, `Checkout/` – Paginile responsabile integral de experienta "e-commerce".
+    - `Joc/`, `Profil/`, `AdminPanel/` – Componentele majore destinate sistemului RPG de performanta fizica (game-flow).
+    - `Navbar/`, `Footer/` – Meniurile persistente sus-jos.
+    - **`Images/`** – Directorul in care se alfa toata galeria de imagini fizice vizualizate pe site (pozele si ilustratiile produselor precum proteine, rezi-band-uri etc., plus background-uri de test). Marea majoritate in formate optimizate (`.webp`, `.avif`, `.jpeg`).
+  - **`data/`** – Continut folosit pe post de repozitoriu local de obiecte (ex. initializarea produselor de e-commerce pentru un mediu fara backend API activ).
+  - **`App.jsx`**, **`main.jsx`** – Punctele fierbinti ale rutarilor, ce injecteaza tot arborele de componente cat si `Context`-ul in fluxul paginii indexate de vite.
+  - **`index.css` / `App.css`** – CSS de ansamblu si variabilele universale care creeaza paleta (culorile neon-misterios specifice temei dark).
+- **`public/`** – Stocheaza fisiere fara parsare directa de React, destinate indexarii root (vectori globali de grafica – `icons.svg`, favicon etc).
+
+## Functionalitati Principale
 
 ### 1. Pagina Principala
 - **Prezentare:** Sectiune principala "Hero" full-screen (responsive) cu un buton de call-to-action dinamic.
